@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Graduate School, Chulalongkorn University',
+    'name' => 'บัณฑิตวิทยาลัย จุฬาลงกรณ์มหาวิทยาลัย',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Bangkok',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
 
 
@@ -230,7 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'=> Illuminate\Html\FormFacade::class,
         'Html'=> Illuminate\Html\HtmlFacade::class,
-
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];

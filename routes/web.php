@@ -10,7 +10,7 @@
 |
 */
 Route::get('/', function () {
-    return view('auth/login');
+    return view('/welcome');
 });
 
 Route::get('/roomtasks','RoomTaskController@index');
@@ -25,8 +25,16 @@ Route::put('/roomtasks/{id}/edit','RoomTaskController@update');
 Route::get('/roomtasks/{id}/edit','RoomTaskController@edit');
 ////////////////////////////////////////////////////////////////
 Route::get('/roomlist','RoomListController@index');
+
 Route::get('/roomlist/create','RoomListController@create');
+Route::get('/roomlist/{roomlist}','RoomListController@show');
 Route::post('/roomlist','RoomListController@store');
+
+Route::put('/roomlist/{id}/edit','RoomListController@update');
+
+Route::get('/roomlist/{id}/edit','RoomListController@edit');
+
+
 ////////////////////////////////////////////////////////////////
 Auth::routes();
 
@@ -34,13 +42,47 @@ Route::get('/home', 'HomeController@index');
 ////////////////////////////////////////////////////////////////
 
 
-//Route::patch('roomtasks/{id}/edit', function () {
-//    $this->validate(request(), [
-//        'description' => 'required|min:10'
-//    ]);
-//
-//    RoomTask::updating(request(['roomname', 'description']));
-//
-//    //Redirect to Home page
-//
-//    return redirect('/roomtasks');});
+Route::get('datatables', 'DatatablesController@getIndex')
+    ->name('datatables');
+Route::get('datatables.data', 'DatatablesController@anyData')
+    ->name('datatables.data');
+
+
+
+Route::get('datatables/togglestatus/{id}', 'DatatablesController@ToggleStatus');
+
+Route::get('datatables/show', 'DatatablesController@getId');
+
+Route::get('datatables.byid', 'DatatablesController@getbyId')
+    ->name('datatables.byid');
+
+//Route::get('datatables/show','DatatablesController@show');
+
+
+
+///////////////////////////////////////////////////
+
+Route::get('/cartasks','CarTaskController@index');
+Route::get('/cartask', 'CarTaskController@getCarTask')
+    ->name('datatables.cardata');
+
+Route::get('/cartask', 'CarTaskController@getCarTask')
+    ->name('datatables.cardata');
+
+Route::get('/cartaskid', 'CarTaskController@getbyId')
+    ->name('datatables.carIddata');
+
+
+
+Route::post('cartasks','CarTaskController@store');
+Route::get('cartasks/togglestatus/{id}', 'CarTaskController@ToggleStatus');
+
+
+
+
+
+
+
+//Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+//    return "this page requires that you be logged in and an Admin";
+//}]);

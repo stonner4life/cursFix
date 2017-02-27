@@ -17,8 +17,13 @@ class CreateRoomtasksTable extends Migration
 
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
+
             $table->string('roomname');
+            $table->text('topic');
             $table->text('description');
+            $table->integer('capcity')->unsigned();
+            $table->timestamps('start_at');
+            $table->timestamps('finish_at');
             $table->boolean('status')->default(false);
             $table->timestamps();
 

@@ -7,17 +7,20 @@
 </head>
 <body>
 @section('content')
+    <h1> &nbsp รายละเอียดห้องเรียนและของประชุม</h1>
     <ul>
         @foreach($roomlist as $roomlists)
+
 
             <li>
 
 
 
+                <a href="roomlist/{{$roomlists->id}}">
 
-                    <div class="blog-post">
+                    <div class="blog-post" >
 
-                        <h2 class="blog-post-title"> {{$roomlists->roomname}}  </h2>
+                        <h2 class="blog-post-title" > {{$roomlists->roomname}}  </h2>
                         <img src="/images/{{$roomlists->image}}" class="img-rounded" width="304" height="236">
 
                         <p class="blog-post-meta">อัพเดทล่าสุด: {{$roomlists->updated_at->toFormattedDateString()}} </p>
@@ -35,8 +38,7 @@
                             </ul>
                         @endif
                     </div>
-
-
+                </a>
             </li>
 
         @endforeach

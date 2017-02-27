@@ -9,9 +9,13 @@ class RoomTask extends Model
 
     protected $table='room_tasks';
     protected $fillable=[
-        'roomname',
         'user_id',
-        'description'
+        'room_id',
+        'description',
+        'topic',
+        'capacity',
+        'start_at',
+        'finish_at',
     ];
 
     //RoomTask own by user One to Many

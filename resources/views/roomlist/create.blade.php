@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title></title>
-</head>
-<body>
-
 @section('content')
 
 <div class="container">
     <h1>เพิ่มห้องใหม่</h1>
     <hr>
+
+    <style>
+        .form-control {
+            display: inline-block;
+        }
+    </style>
 
     <form method="post" action="/roomlist">
 
@@ -38,23 +37,13 @@
 
         <div class="form-group">
         {!! Form::label('devices','อุปกรณ์โสตฯ:') !!}
-        {!! Form::select('devices[]',$devices,null,['clsss'=>'form-control','multiple']) !!}
+        {!! Form::select('devices[]',$devices,null,['id'=>'good_List','clsss'=>'form-control','multiple']) !!}
         </div>
-
-
-        {{--<div class="form-group">--}}
-            {{--<label for="devices">อุปกรณ์โสตฯ:</label>--}}
-            {{--<label class="checkbox-inline" name="devices">--}}
-                {{--@foreach($devices as $devicess)--}}
-                {{--<input type="checkbox" value="" name="devices">--}}
-                {{--{{ $devicess->name }}--}}
-                {{--@endforeach--}}
-            {{--</label>--}}
-        {{--</div>--}}
 
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">เพิ่ม</button>
+            <button href="{{ URL::previous() }}" class="btn btn-primary pull-right" >กลับ</button>
         </div>
 
         @include('layouts.errors')
@@ -62,8 +51,18 @@
     </form>
 
 </div>
+
+
 @endsection
-</body>
 
 
-</html>
+
+{{--<div class="form-group">--}}
+{{--<label for="devices">อุปกรณ์โสตฯ:</label>--}}
+{{--<label class="checkbox-inline" name="devices">--}}
+{{--@foreach($devices as $devicess)--}}
+{{--<input type="checkbox" value="" name="devices">--}}
+{{--{{ $devicess->name }}--}}
+{{--@endforeach--}}
+{{--</label>--}}
+{{--</div>--}}

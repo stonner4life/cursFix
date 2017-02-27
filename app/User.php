@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role'
     ];
 
     /**
@@ -26,9 +26,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
- ///14//
+
+
     public function rooms(){
         return $this->hasMany('App\RoomTask');
     }
 
+    public function roles(){
+        return $this->hasMany('App\Role','id','role');
+    }
+
+    public function isAdmin()
+    {
+//        return $this->admin; // this looks for an admin column in your users table
+
+        return Role::find($this->attributes['role'])->name == 'admin';
+    }
+
+//    protected $appends = ['isAdmin'];
+//    public function getIsAdminAttribute()
+//    {
+//        return Role::find($this->attributes['role'])->name == 'admin';
+//    }
 }

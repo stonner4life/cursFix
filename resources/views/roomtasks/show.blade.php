@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title></title>
-</head>
-<body>
+@extends('layouts.app')
 
+@section('content')
 <h1>{{$roomtasks->roomname}}</h1>
     {{$roomtasks->description}}
+   {{$roomtasks->start_at}}
+@endsection
 
 
-</body>
-</html>
+

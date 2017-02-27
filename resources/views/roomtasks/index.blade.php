@@ -19,7 +19,7 @@
 
                 <h2 class="blog-post-title"> {{$roomtask->roomname}}  </h2>
 
-                <p class="blog-post-meta">Booked at {{$roomtask->created_at->toFormattedDateString()}}  <a>by {{$roomtask->user->name}}</a></p>
+                <p class="blog-post-meta">จองเมื่อ: {{$roomtask->created_at->toFormattedDateString()}}  <a>โดย: {{$roomtask->user->name}}</a></p>
                 {{$roomtask->description}}
 
             </div>

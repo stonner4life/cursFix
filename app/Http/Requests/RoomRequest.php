@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\RoomTask;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RoomRequest extends FormRequest
@@ -14,6 +16,7 @@ class RoomRequest extends FormRequest
     public function authorize()
     {
         return true;
+
     }
 
     /**
@@ -24,8 +27,7 @@ class RoomRequest extends FormRequest
     public function rules()
     {
         return [
-           'description'=>'required|min:10',
-            'roomname'=>'required'
+           'description'=>'required|min:10'
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 
+
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -12,7 +13,24 @@ use Illuminate\Foundation\Inspiring;
 | simple approach to interacting with each command's IO methods.
 |
 */
-
+//
 Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
+    Log::info("Works!");
 })->describe('Display an inspiring quote');
+
+//Artisan::command('Test',function (){
+//     return view('/roomlist.index');
+//});
+
+
+//Artisan::command('shit', function () {
+//    $this->comment(Inspiring::quote());
+//});
+
+
+//Artisan::command('inspire', function () {
+//    return view('/home');
+//});
+
+
+

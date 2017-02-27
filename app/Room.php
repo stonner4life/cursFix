@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
@@ -23,5 +24,14 @@ class Room extends Model
         return $this->belongsToMany(Devices::class)->withTimestamps();
     }
 
+
+
+
+    ////GET LIST OF DEVICES ASSOCIATED WITH ROOM
+    public function devicesList(){
+
+        return $this->devices->pluck('id')->all();
+
+    }
 
 }

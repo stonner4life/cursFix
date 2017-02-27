@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+     //
     ];
 
     /**
@@ -24,9 +24,25 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('inspire')
+                 ->everyMinute();
+
+//        $schedule->command('shit')
+//                ->everyMinute();
+
+//        $schedule->command('echo',function (){
+//            return view('roomlist.index');
+//        }
+//        )
+//                 ->everyMinute();
+
+
     }
+//           $schedule->exec('inspire')
+//                    ->everyMinute();
+
+
+
 
     /**
      * Register the Closure based commands for the application.
