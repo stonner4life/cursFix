@@ -11,6 +11,7 @@
     <div class="tab-content">
         <div id="roomtask" class="tab-pane fade in active">
             <h3>ประวัติการจองห้องประชุม</h3>
+
             <table class="table table-bordered" id="roomtask-table">
                 <thead>
                 <tr>
@@ -22,11 +23,14 @@
                     <th>เรื่องการประชุม</th>
                     <th>จำนวนผู้เข้าประชุม</th>
                     <th style="width: 7%">สถานะ</th>
+                    <th>จำนวนชั่วโมง</th>
                     <th>จัดการ</th>
                 </tr>
                 </thead>
             </table>
+
             @include('layouts.getroomtask')
+
         </div>
         <div id="vehicle" class="tab-pane fade">
             <h3>ประวัติการจองยานพาหนะ</h3>
@@ -41,53 +45,21 @@
                     <th>เวลาเดินทางไป</th>
                     <th>เวลาเดินทางกลับ</th>
                     <th>ทะเบียนรถ</th>
-                    <th>พนักงานขับรถ</th>
-                    <th style="width: 7%">สถานะ</th>
-                    <th>จัดการ</th>
+                    <th >สถานะ</th>
+                    <th>จำนวนชั่วโมง</th>
+                    <th style="width: 7%">จัดการ</th>
                 </tr>
                 </thead>
             </table>
-
+            @include('layouts.getcartask')
         </div>
 
         <div id="camera" class="tab-pane fade">
+
             <h3>Avialable Soon</h3>
 
         </div>
     </div>
-
-
-
-
-
-
-   {{--CarTask--}}
-    @foreach ($cartasks as $cartask )
-
-        <div class="modal fade" id="carModal{{$cartask->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{$cartask->room_id}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>เริ่มประชุม:</strong>   {{$cartask->start_at}}</p>
-                        <p><strong>สิ้นสุด:</strong> {{$cartask->finish_at}}</p>
-                        <p><strong>จำนวนผู้เข้าประชุม: </strong>{{$cartask->capacity}} คน </p>
-                        <p><strong>รายละเอียดการประชุม:</strong></p>
-                        <p>{{$cartask->description}}</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    @endforeach
-
 @stop
 
 
@@ -101,12 +73,28 @@
 
             dom: 'Bfrtip',
             buttons: [
-                'print'
+                {
+                    extend: 'excelHtml5',
+                    text:'รายงานผลรูปแบบ EXCEL',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text:'รายงานผลรูปแบบ PDF',
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 5 ]
+                    }
+                },
+               { extend:'colvis',text:'เลือกคอลัมน์'}
+
             ],
             ajax: '{!! route('datatables.data') !!}',
             oLanguage: {
                 "sLengthMenu": "แสดงผลทีละ _MENU_ รายการ",
                 "sSearch": "ค้นหา:",
+                "sInfoFiltered": " - กรองจากผลลัพท์ทั้งหมด _MAX_ ผลลัพท์",
                 "sInfo": "จากจำนวนทั้งหมด _TOTAL_ รายการ แสดงผลรายการที่ (_START_ ถึง _END_)",
                 "sInfoEmpty": "ไม่มีข้อมูลให้แสดงผล",
                 "sEmptyTable": "ไม่มีข้อมูลในระบบ",
@@ -120,13 +108,14 @@
 
                 { data: 'id', name: 'id' },
                 { data: 'user.name', name: 'user.name' },
-                { data: 'room_id', name: 'room_id' },
+                { data: 'roomlist.roomname', name: 'roomlist.roomname' },
                 { data: 'start_at', name: 'start_at' },
                 { data: 'finish_at', name: 'finish_at' },
                 { data: 'topic', name: 'topic' },
                 { data: 'capacity', name: 'capacity' },
                 { data: 'status', name: 'status' ,render: function ( data, type, full, meta )
                 {return data==0 ? '<span style="color: red">รออนุมัติ</span>' : '<span style="color: green">อนุมัติ</span>' ;} },
+                { data: 'hours', name: 'hours' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
 
             ]
@@ -145,16 +134,11 @@
         $('#cartask-table').DataTable({
             processing: true,
             serverSide: true,
-
-            dom: 'Bfrtip',
-            buttons: [
-                'print'
-            ],
-
             ajax: '{!! route('datatables.cardata') !!}',
             oLanguage: {
                 "sLengthMenu": "แสดงผลทีละ _MENU_ รายการ",
                 "sSearch": "ค้นหา:",
+                "sInfoFiltered": " - กรองจากผลลัพท์ทั้งหมด _MAX_ ผลลัพท์",
                 "sInfo": "จากจำนวนทั้งหมด _TOTAL_ รายการ แสดงผลรายการที่ (_START_ ถึง _END_)",
                 "sInfoEmpty": "ไม่มีข้อมูลให้แสดงผล",
                 "sEmptyTable": "ไม่มีข้อมูลในระบบ",
@@ -164,6 +148,25 @@
                     "sPrevious": "หน้าก่อนหน้า"
                 }
             },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text:'รายงานผลรูปแบบ EXCEL',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text:'รายงานผลรูปแบบ PDF',
+                    exportOptions: {
+                        columns: [ 0, 1, 2, 5 ]
+                    }
+                },
+                { extend:'colvis',text:'เลือกคอลัมน์'}
+
+            ],
             columns: [
 
                 { data: 'id', name: 'id' },
@@ -173,15 +176,17 @@
                 { data: 'place', name: 'place' },
                 { data: 'start_at', name: 'start_at' },
                 { data: 'finish_at', name: 'finish_at' },
-                { data: 'vehicle', name: 'vehicle' },
-                { data: 'driver', name: 'driver' },
+                { data: 'carlist.license', name: 'carlist.license' },
                 { data: 'status', name: 'status' ,render: function ( data, type, full, meta )
                 {return data==0 ? '<span style="color: red">รออนุมัติ</span>' : '<span style="color: green">อนุมัติ</span>' ;} },
+                { data: 'hours', name: 'hours' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
 
 
             ]
+
         });
+
     });
 
 </script>
@@ -192,4 +197,6 @@
 <script>
     $('div.alert').not('.alert.important').delay(2000).slideUp(300);
 </script>
+
+
 @endpush

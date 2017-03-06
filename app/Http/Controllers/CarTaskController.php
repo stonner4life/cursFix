@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Car;
+use App\RoomTask;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\CarTask;
 use Datatables;
 use DB;
 use User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class CarTaskController extends Controller
@@ -39,7 +42,9 @@ class CarTaskController extends Controller
 
     public function store(CarTask $request)
     {
+        $carlists = Car::all();
 
+      $roomtasks = RoomTask::all();
       $cartasks = CarTask::with('user');
         $car =request("vehicle");
         $d1 =request('start_at');
@@ -72,26 +77,33 @@ class CarTaskController extends Controller
         if($db != null)
         {
             session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่1');
-            return view('cartasks.index', compact('cartasks'));
+            return view('datatables.show',compact('cartasks','roomtasks'));
         }
         else if ($db2 != null){
             session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม2');
-            return view('cartasks.index', compact('cartasks'));
+            return view('datatables.show',compact('cartasks','roomtasks'));
 
         }
         else if ($db3 != null){
             session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่3');
-            return view('cartasks.index', compact('cartasks'));
+            return view('datatables.show',compact('cartasks','roomtasks'));
         }
         else if ($db4 != null){
             session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่4');
-            return view('cartasks.index', compact('cartasks'));
+            return view('datatables.show',compact('cartasks','roomtasks'));
         }
         else
         {
+            $current = Carbon::parse(request('start_at'));
+            $dt      = Carbon::parse(request('finish_at'));
+            $hours = $current->diffInHours($dt);
+
+
 
             CarTask::create([
                 'user_id'=>auth()->id(),
+                'role'=>Auth::user()->role,
+                'sub_role'=>Auth::user()->sub_role,
                 'description'=>request('description'),
                 'purpose'=>request('purpose'),
                 'place'=>request('place'),
@@ -102,11 +114,12 @@ class CarTaskController extends Controller
                 'vehicle'=>request('vehicle'),
                 'driver'=>request('driver'),
                 'status'=>request('status'),
-
+                'hours'=> $hours,
 
             ]);
             session()->flash('message','จองรถยนต์สำเร็จ โปรดรอการอณุมัติ'); //FLASH
-            return redirect('cartasks');
+            //return view('datatables.show',compact('cartasks','roomtasks','carlists'));
+            return redirect('datatables/show');
 
         }
 
@@ -151,42 +164,37 @@ class CarTaskController extends Controller
 
     public function getCarTask()
     {
-//        $cartasks = CarTask::with('user');
-//        if (request()->ajax()) {
-//            return Datatables::of($cartasks)
-//                ->addColumn('action', function ($cartasks) {
-//                    return '<a href="/cartasks/togglestatus/' . $cartasks->id . '" class="btn btn-xs btn-warning">
-//                <i class="glyphicon glyphicon-refresh"></i> เปลี่ยนสถาณะ</a>
-//
-//                 <a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#carModal' . $cartasks->id . '">
-//                 <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดเพิ่มเติมนะ</a>';
-//                })
-//                ->make(true);
-//        }
-//        return view('datatables.cartask', compact('cartasks'));
-        $cartasks = CarTask::with('user');
+
+        $cartasks = CarTask::with('user','carlist','roles','subroles');
         return Datatables::of($cartasks)
                 ->addColumn('action', function ($cartasks) {
                     return '<a href="/cartasks/togglestatus/' . $cartasks->id . '" class="btn btn-xs btn-warning">
                 <i class="glyphicon glyphicon-refresh"></i> เปลี่ยนสถาณะ</a>
-                
-                 <a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#carModal'.$cartasks->id.'">   
-                 <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดเพิ่มเติมนะ</a>';
+
+                 <a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#carModal'.$cartasks->id.'">
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดเพิ่มเติม</a>
+                 
+                  <a href="/cartasks/destroy/' . $cartasks->id . '  " class="btn btn-xs btn-danger" >
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> ลบ </a> ';
                 })
                 ->make(true);
+
 
     }
 
     public function getbyId()
     {
 
-        $cartasks = CarTask::with('user')->where('user_id', Auth::user()->id);
+        $cartasks = CarTask::with('user','carlist')->where('user_id', Auth::user()->id);
 
         return Datatables::of($cartasks)
             ->addColumn('action', function ($cartasks) {
 
                 return '<a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#carModal' . $cartasks->id . '"> 
-                   <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดการจอง </a>';
+                   <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดการจอง </a>
+                   
+                   <a href="/cartasks/destroy/' . $cartasks->id . '  " class="btn btn-xs btn-danger" >
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> ลบ </a> ';
 
 
             })
@@ -194,5 +202,11 @@ class CarTaskController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $cartasks= CarTask::findOrFail($id);
+        $cartasks->delete();
 
+        return redirect()->back();
+    }
 }

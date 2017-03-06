@@ -3,13 +3,7 @@
 <link rel="shortcut icon" href="{{ asset('favicon.png') }}" >
 
 <head>
-    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-    <script data-require="bootstrap@3.3.2" data-semver="3.3.2" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="/js/moment-2.10.3.js"></script>
-    <script src="/js/bootstrap-datetimepicker.js"></script>
+
 
 
     <meta charset="utf-8">
@@ -25,13 +19,15 @@
 
     <!-- Styles -->
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/bootstrap-glyphicons.css" >
+    <link rel="stylesheet" href="/css/select2.min.css">
+
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/kanit.css" rel="stylesheet">
-
-    <!--FOR SELECT2.IO-->
-    {{--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--}} {{--  cannot use version dupicate--}}
-    <!-- Scripts -->
 
     <script>
         window.Laravel = {!! json_encode([
@@ -77,19 +73,36 @@
 @yield('content')
 
 
-@include('layouts.footer')
+
 
 
 
 <!-- App scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script  src="/js/jquery-2.1.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/moment-2.10.3.js"></script>
+<script src="/js/bootstrap-datetimepicker.js"></script>
+<!-- DataTables -->
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/select2.min.js"></script>
 
+
+         {{--FOR ROOMLIST DEVICES SELECT2 --}}
         <script type="text/javascript">
             $('#good_List').select2({
                 width: '100%',
                 placeholder:' เพิ่มอุปกรณโสตฯ',
 
             });
+        </script>
+
+         {{--FOR ROOMTASK DEVICES SELECT2 --}}
+        <script type="text/javascript">
+            $('#good_Lists').select2({
+                width: '100%',
+                placeholder:' เพิ่มอุปกรณโสตฯ',
+
+              });
         </script>
 
     {{--Slide up the flash--}}
@@ -113,6 +126,20 @@
         $("#finish_at").on("dp.change", function (e) {
             $('#start_at').data("DateTimePicker").maxDate(e.date);
         });
+
+
+        $('#carstart_at').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm',
+        });
+        $('#carfinish_at').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm',
+        });
+        $("#start_att").on("dp.change", function (e) {
+            $('#carfinish_at').data("DateTimePicker").minDate(e.date);
+        });
+        $("#finish_att").on("dp.change", function (e) {
+            $('#carstart_at').data("DateTimePicker").maxDate(e.date);
+        });
     });
 </script>
 
@@ -126,4 +153,5 @@
     });
 </script>
 </body>
+@include('layouts.footer')
 </html>

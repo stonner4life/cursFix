@@ -18,8 +18,8 @@ class CreateRoomTable extends Migration
             $table->increments('id');
             $table->string('roomname');
             $table->string('image');
-            $table->tinyInteger('capacity');
-            $table->tinyInteger('description');
+            $table->integer('capacity');
+            $table->string('description');
             $table->timestamps();
 
 

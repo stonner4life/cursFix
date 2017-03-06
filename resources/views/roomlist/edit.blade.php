@@ -20,8 +20,9 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="image" class="control-label"> รูปห้อง:</label>
+                <label for="image" class="control-label"> รูปห้อง:</label> <img src="/images/{{$roomlist->image}}">
                 <input id="input-1" type="file" class="file" name="image" >
+
 
 
             </div>
@@ -46,16 +47,6 @@
                 {!! Form::select('devices[]',$devices,$roomlist->devicesList(),['id'=>'good_List','clsss'=>'form-control','multiple']) !!}
             </div>
 
-
-            {{--<div class="form-group">--}}
-            {{--<label for="devices">อุปกรณ์โสตฯ:</label>--}}
-            {{--<label class="checkbox-inline" name="devices">--}}
-            {{--@foreach($devices as $devicess)--}}
-            {{--<input type="checkbox" value="" name="devices">--}}
-            {{--{{ $devicess->name }}--}}
-            {{--@endforeach--}}
-            {{--</label>--}}
-            {{--</div>--}}
 
 
             <div class="form-group">

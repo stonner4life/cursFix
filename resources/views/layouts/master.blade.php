@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
 
 
@@ -63,15 +63,28 @@
 
 
 <!-- jQuery -->
-<script src="//code.jquery.com/jquery.js"></script>
+<script  src="/js/jquery-2.1.3.min.js"></script>
+
 <!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
 <!-- Bootstrap JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!-- DataButton -->
 <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
 <!-- Datatable Print Button -->
 <script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+<!-- Datatable JS Button -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+
+<!-- Datatable PDF Button -->
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<!-- Datatable VFS font Button -->
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+
+<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+
+
 
 {{--Show GIF while load--}}
 <script type="text/javascript">

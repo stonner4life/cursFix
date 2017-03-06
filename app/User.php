@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role'
+        'name', 'email', 'password','role','sub_role'
     ];
 
     /**
@@ -33,9 +33,12 @@ class User extends Authenticatable
     }
 
     public function roles(){
-        return $this->hasMany('App\Role','id','role');
+        return $this->belongsTo('App\Role','role','id');
     }
 
+    public function subroles(){
+        return $this->belongsTo('App\SubRole','sub_role','id');
+    }
     public function isAdmin()
     {
 //        return $this->admin; // this looks for an admin column in your users table
@@ -43,9 +46,4 @@ class User extends Authenticatable
         return Role::find($this->attributes['role'])->name == 'admin';
     }
 
-//    protected $appends = ['isAdmin'];
-//    public function getIsAdminAttribute()
-//    {
-//        return Role::find($this->attributes['role'])->name == 'admin';
-//    }
 }

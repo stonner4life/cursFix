@@ -31,6 +31,18 @@ class CreateDevicesTable extends Migration
             $table->foreign('devices_id')->references('id')->on('devices')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('devices_room_task',function (Blueprint $table)
+        {
+
+            $table->integer('room_task_id')->unsigned()->index();
+            $table->foreign('room_task_id')
+                ->references('id')->on('room_tasks')->onDelete('cascade');
+            ////
+            $table->integer('devices_id')->unsigned()->index();
+            $table->foreign('devices_id')->references('id')->on('devices')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -42,5 +54,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::drop('devices');
         Schema::drop('rooms_device');
+        Schema::drop('devices_roomtask');
+
     }
 }

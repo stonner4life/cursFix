@@ -22,11 +22,13 @@ class CreateCarsTable extends Migration
             $table->string('place');
             $table->string('contactNumber');
             $table->integer('passenger')->unsigned();
-            $table->timestamps('start_at');
+            $table->timestamp('start_at');
             $table->timestamps('finish_at');
             $table->string('vehicle');
+            $table->boolean('status')->default(false);
             $table->string('driver');
-            $table->timestamps();
+            $table->integer('houurs')->unsigned();
+
 
 
             $table->foreign('user_id') // user id
@@ -43,6 +45,6 @@ class CreateCarsTable extends Migration
      */
     public function down()
     {
-        //
-    }
+        Schema::dropIfExists('cars');
+}
 }

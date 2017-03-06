@@ -1,7 +1,12 @@
-<div class="panel panel-default">
-    <div class="panel-heading" align="center">เลือกทำรายการ</div>
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+      <div class="panel panel-default">
+       <div class="panel-heading" align="center">เลือกทำรายการ</div>
 
     <div class="panel-body">
+
         <div class="row">
             <div class="col-md-4">
                 <a href="#" data-toggle="modal" data-target="#myModal">
@@ -17,7 +22,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="#" data-toggle="modal" data-target="#myModal">
+                <a href="#" data-toggle="modal" data-target="#carTaskModal">
                     <div  class="panel panel-primary">
                         <div class="panel-heading" align="center">
                             <span class="glyphicon glyphicon-road" style="font-size: 120px;" ></span>
@@ -43,6 +48,13 @@
                 </a>
             </div>
         </div>
+        @include('layouts.cartaskmodal')
     </div>
+    @include('layouts.roomtaskmodal')
 </div>
-@include('layouts.roomtaskmodal')
+    </div>
+    @endsection
+
+
+
+

@@ -94,7 +94,7 @@
 
                 @else
                     <div class="links">
-
+                        <a href="/alllists">รายละเอียด ห้องประชุมและยานพาหนะ</a>
                 @endif
 
 

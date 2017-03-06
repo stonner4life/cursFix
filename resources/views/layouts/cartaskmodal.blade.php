@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" action="/cartasks">
+                <form method="post" action="/cartasks/create">
 
                     {{ csrf_field() }}
 
@@ -18,7 +18,7 @@
 
                     <div class="form-group">
                         <label>ตั้งแต่วัน/เวลา:</label>
-                        <div class='input-group date' id='start_at'>
+                        <div class='input-group date' id='carstart_at'>
                             <input name="start_at" type='text' class="form-control" />
                             <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -29,15 +29,19 @@
 
                     <div class="form-group">
                         <label>จนถึงวัน/เวลา:</label>
-                        <div class='input-group date' id='finish_at'>
+                        <div class='input-group date' id='carfinish_at'>
                             <input name="finish_at" type='text' class="form-control" />
                             <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="place">สถานที่:</label>
-                        <textarea class="form-control" name="place" rows="1" ></textarea>
+                        <select class="form-control" name="place">
+                            <option>ภายใน กรุงเทพและปริมณฑล</option>
+                            <option>ภายนอก กรุงเทพและปริมณฑล</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -59,18 +63,23 @@
                     <div class="form-group">
                         <label for="vehicle">เลือกยานพาหนะ:</label>
                         <select class="form-control" name="vehicle">
-                            <option>Ford Mustang GT 500</option>
-                            <option>Bugati Veyron</option>
+
+                            @foreach($carlists as $carlist)
+                                <option value="{{$carlist->id}}">
+                                    {{$carlist->type}} {{$carlist->brand}} {{$carlist->model}} {{$carlist->license}}
+                                </option>
+                            @endforeach
 
                         </select>
                     </div>
 
 
+
                     <div class="form-group">
                         <label for="driver">พนักงานขับรถ :</label>
                         <select class="form-control" name="driver">
-                            <option>Ken Block</option>
-                            <option>Pual Walker</option>
+                            <option>นาย ภาคิน นนท์ทองพูล</option>
+                            <option>นาย สำเริง แก้วรุ่งเรือง</option>
                         </select>
                     </div>
 

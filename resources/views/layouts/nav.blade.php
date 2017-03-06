@@ -39,6 +39,27 @@
                     <ul class="dropdown-menu" role="menu">
 
                         <li>
+                            <a href="{{ url('/home') }}">
+                                <span class="glyphicon glyphicon-home"  ></span>
+                                หน้าหลัก
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/users/{{ Auth::user()->id }}/edit">
+                                <span class="glyphicon glyphicon-user"  ></span>
+                                ประวัติส่วนตัวของฉัน
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ url('/alllists') }}">
+                                <span class="glyphicon glyphicon-blackboard"  ></span>
+                                ห้องประชุมและยานพาหนะในระบบ
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="{{ url('/datatables') }}">
                                 <span class="glyphicon glyphicon-list-alt"  ></span>
                                 ประวัติการจองทั้งหมด
@@ -61,7 +82,7 @@
                     </ul>
                 </li>
 
-                @elseif( Auth::user()->role == 2 ) {{-- 2-->NORMAL USER--}}
+                @elseif( Auth::user()->role > 1 ) {{-- 2-->NORMAL USER--}}
 
                     <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -69,6 +90,30 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="{{ url('/home') }}">
+                                            <span class="glyphicon glyphicon-home"  ></span>
+                                            หน้าหลัก
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/users/{{ Auth::user()->id }}/edit">
+                                            <span class="glyphicon glyphicon-user"  ></span>
+                                            ประวัติส่วนตัวของฉัน
+                                        </a>
+                                    </li>
+
+
+
+                                    <li>
+                                        <a href="{{ url('/alllists') }}">
+                                            <span class="glyphicon glyphicon-blackboard"  ></span>
+                                            ห้องประชุมและยานพาหนะในระบบ
+                                        </a>
+                                    </li>
+
 
                                     <li>
                                         <a href="{{ url('/datatables/show/') }}">
@@ -90,7 +135,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>
+                                 </ul>
                     </li>
                </ul>
         @endif

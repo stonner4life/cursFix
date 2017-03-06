@@ -6,7 +6,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="carModalLabel">กรอกรายละเอียดจองยานพาหนะ</h4>
+                <h4 class="modal-title" id="carModalLabel">เพิ่มยานพาหนะใหม่ในระบบ</h4>
             </div>
             <div class="modal-body">
                 <style>
@@ -15,17 +15,32 @@
                     }
                 </style>
 
-                <form method="post" action="/roomlist">
+                <form method="post" action="/carlists/create">
 
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="image" class="control-label"> :</label>
+                        <label for="image" class="control-label"> รูปยานพาหนะ:</label>
                         <input id="input-1" type="file" class="file" name="image">
                     </div>
 
                     <div class="form-group">
-                        <label for="roomname">ชื่อห้อง:</label>
-                        <textarea class="form-control" name="roomname" rows="1" ></textarea>
+                        <label for="brand">ยี่ห้อ:</label>
+                        <textarea class="form-control" name="brand" rows="1" ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="model">รุ่น:</label>
+                        <textarea class="form-control" name="model" rows="1" ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">ประเภท:</label>
+                        <textarea class="form-control" name="type" rows="1" ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="license">ทะเบียนรถ:</label>
+                        <textarea class="form-control" name="license" rows="1" ></textarea>
                     </div>
 
                     <div class="form-group">
@@ -36,11 +51,6 @@
                     <div class="form-group">
                         <label for="description">รายละเอียด:</label>
                         <textarea class="form-control" name="description" rows="2" ></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('devices','อุปกรณ์โสตฯ:') !!}
-                        {!! Form::select('devices[]',$devices,null,['id'=>'good_List','clsss'=>'form-control','multiple']) !!}
                     </div>
 
 

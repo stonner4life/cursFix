@@ -16,6 +16,7 @@
                 <tr>
                     <th>ลำดับที่</th>
                     <th>จองโดย</th>
+                    <th>role</th>
                     <th>ห้องประชุม</th>
                     <th>จองเมื่อ</th>
                     <th>จองถึง</th>
@@ -26,6 +27,7 @@
                 </tr>
                 </thead>
             </table>
+            @include('layouts.getroomtask')
         </div>
         <div id="vehicle" class="tab-pane fade">
             <h3>ประวัติการจองยานพาหนะ</h3>
@@ -34,6 +36,7 @@
                 <tr>
                     <th>ลำดับที่</th>
                     <th>จองโดย</th>
+                    <th>ติดต่อ</th>
                     <th>ไปปฎิบัติงานที่</th>
                     <th>เพื่อ</th>
                     <th>สถานที่</th>
@@ -47,6 +50,8 @@
                 </thead>
             </table>
 
+            @include('layouts.getcartask')
+
         </div>
 
         <div id="camera" class="tab-pane fade">
@@ -54,62 +59,6 @@
 
         </div>
     </div>
-
-
-    @foreach ($roomtasks as $roomtask)
-        <div class="modal fade" id="myModal{{$roomtask->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">ห้องประชุม:{{$roomtask->room_id}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>เริ่มประชุม: {{$roomtask->start_at}}</p>
-                        <p>สิ้นสุด: {{$roomtask->finish_at}}</p>
-                        <p> จำนวนผู้เข้าประชุม: {{$roomtask->capacity}} คน </p>
-                        <p>รายละเอียดการประชุม:</p>
-                        <p>{{$roomtask->description}}</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-
-
-    {{--CarTask--}}
-    @foreach ($cartasks as $cartask )
-
-        <div class="modal fade" id="carModal{{$cartask->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{$cartask->room_id}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>เริ่มประชุม:</strong>   {{$cartask->start_at}}</p>
-                        <p><strong>สิ้นสุด:</strong> {{$cartask->finish_at}}</p>
-                        <p><strong>จำนวนผู้เข้าประชุม: </strong>{{$cartask->capacity}} คน </p>
-                        <p><strong>รายละเอียดการประชุม:</strong></p>
-                        <p>{{$cartask->description}}</p>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    @endforeach
-
-
-
 
 @stop
 
@@ -125,6 +74,7 @@
             oLanguage: {
                 "sLengthMenu": "แสดงผลทีละ _MENU_ รายการ",
                 "sSearch": "ค้นหา:",
+                "sInfoFiltered": " - กรองจากผลลัพท์ทั้งหมด _MAX_ ผลลัพท์",
                 "sInfo": "จากจำนวนทั้งหมด _TOTAL_ รายการ แสดงผลรายการที่ (_START_ ถึง _END_)",
                 "sInfoEmpty": "ไม่มีข้อมูลให้แสดงผล",
                 "sEmptyTable": "ไม่มีข้อมูลในระบบ",
@@ -140,7 +90,10 @@
 
                 { data: 'id', name: 'id' },
                 { data: 'user.name', name: 'user.name' },
-                { data: 'room_id', name: 'room_id' },
+
+//                { data: 'roles.name', name: 'roles.name' },
+                {data: 'user.role.name', name: 'user.rolesname' },
+                { data: 'roomlist.roomname', name: 'roomlist.roomname' },
                 { data: 'start_at', name: 'start_at' },
                 { data: 'finish_at', name: 'finish_at' },
                 { data: 'topic', name: 'topic' },
@@ -166,6 +119,7 @@
             ajax: '{!! route('datatables.carIddata') !!}',
             oLanguage: {
                 "sLengthMenu": "แสดงผลทีละ _MENU_ รายการ",
+                "sInfoFiltered": " - กรองจากผลลัพท์ทั้งหมด _MAX_ ผลลัพท์",
                 "sSearch": "ค้นหา:",
                 "sInfo": "จากจำนวนทั้งหมด _TOTAL_ รายการ แสดงผลรายการที่ (_START_ ถึง _END_)",
                 "sInfoEmpty": "ไม่มีข้อมูลให้แสดงผล",
@@ -180,12 +134,13 @@
 
                 { data: 'id', name: 'id' },
                 { data: 'user.name', name: 'user.name' },
+                { data: 'contactNumber' , name: 'contactNumber'},
                 { data: 'description', name: 'description' },
                 { data: 'purpose', name: 'purpose' },
                 { data: 'place', name: 'place' },
                 { data: 'start_at', name: 'start_at' },
                 { data: 'finish_at', name: 'finish_at' },
-                { data: 'vehicle', name: 'vehicle' },
+                { data: 'carlist.license', name: 'carlist.license   ' },
                 { data: 'driver', name: 'driver' },
                 { data: 'status', name: 'status' ,render: function ( data, type, full, meta )
                 {return data==0 ? '<span style="color: red">รออนุมัติ</span>' : '<span style="color: green">อนุมัติ</span>' ;} },

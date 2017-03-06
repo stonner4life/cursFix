@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Room;
+
+use App\Role;
+use App\SubRole;
 use Illuminate\Http\Request;
 use Datatables;
 use App\RoomTask;
@@ -9,7 +11,7 @@ use DB;
 use User;
 use Auth;
 use App\CarTask;
-use App\Devices;
+
 
 class DatatablesController extends Controller
 {
@@ -32,6 +34,7 @@ class DatatablesController extends Controller
      */
     public function getIndex()
     {
+
         $cartasks = CarTask::all();
         $roomtasks = RoomTask::all();
         if (request()->ajax()) {
@@ -49,15 +52,21 @@ class DatatablesController extends Controller
     public function anyData()
     {
 
-        $roomtasks = RoomTask::with('user');
+        $roomtasks = RoomTask::with('user','roomlist','roles','subroles');
+
+        //return dd($roomtasks);
 
         return Datatables::of($roomtasks)
             ->addColumn('action', function ($roomtasks) {
                 return '<a href="/datatables/togglestatus/' . $roomtasks->id . '" class="btn btn-xs btn-warning">
                 <i class="glyphicon glyphicon-refresh"></i> เปลี่ยนสถาณะ</a>
-                
-                 <a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#myModal' . $roomtasks->id . '">   
-                 <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดเพิ่มเติม </a>';
+
+                 <a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#myModal' . $roomtasks->id . '">
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดเพิ่มเติม </a> 
+                 
+                 <a href="/roomtasks/destroy/' . $roomtasks->id . '" class="btn btn-xs btn-danger" >
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> ลบ </a>\'';
+
             })
             ->make(true);
 
@@ -72,29 +81,41 @@ class DatatablesController extends Controller
     }
 
 
-    public function getId()
+
+        public function getId()
     {
         $cartasks = CarTask::all();
-        $roomtasks = RoomTask::all();
+        $roomtasks = RoomTask::with('user.roles','roomlist','roles');
+        $roles = Role::all();
+        $subroles = SubRole::all();
+
+       // dd($roomtasks->get());
 
         if (request()->ajax()) {
 
-            return Datatables::of(RoomTask::query())->make(true);
+            return Datatables::of($roomtasks)->make(true);
 
         }
-        return view('datatables.show',compact('roomtasks','cartasks'));
+        return view('datatables.show',compact('roomtasks','cartasks','roles','subroles'));
     }
+
 
     public function getbyId()
     {
 
-        $roomtasks = RoomTask::with('user')->where('user_id', Auth::user()->id);
+        $roomtasks = RoomTask::with('user','roomlist','roles','subroles')->where('user_id', Auth::user()->id);
+
+
+
 
         return Datatables::of($roomtasks)
             ->addColumn('action', function ($roomtasks) {
 
                 return '<a href="#" class="btn btn-xs btn-success"  data-toggle="modal" data-target="#myModal' . $roomtasks->id . '"> 
-                   <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดการจอง </a>';
+                   <i class="glyphicon glyphicon-exclamation-sign"></i> รายละเอียดการจอง </a>
+                   
+                    <a href="/roomtasks/destroy/' . $roomtasks->id . '  " class="btn btn-xs btn-danger" >
+                 <i class="glyphicon glyphicon-exclamation-sign"></i> ลบ </a>';
 
 
             })

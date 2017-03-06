@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RoomRequest;
 use Illuminate\Http\Request;
 use App\Room;
+use App;
 use App\Devices;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,7 @@ class RoomListController extends Controller
         $roomlist = Room::create($request->all());
         $deviceIds = $request->input('devices');
         $roomlist->devices()->attach($deviceIds);
-        return redirect('/roomlist');
+        return redirect('/alllists');
 
     }
 

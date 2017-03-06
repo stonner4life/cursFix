@@ -25,6 +25,11 @@ class CreateUsersTable extends Migration
             $table->foreign('role')
                   ->references('id')
                    ->on('roles');//roles table
+            ///////////////////////////////////
+            $table->integer('sub_role')->index()->unsigned();
+            $table->foreign('sub_role')
+                ->references('id')
+                ->on('sub_roles');//sub_roles table
 
         });
 

@@ -28,7 +28,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="carTaskModalLabel">{{$cartask->room_id}}</h4>
+                        <h4 class="modal-title" id="carTaskModalLabel">{{$cartask->vehicle}}</h4>
                     </div>
                     <div class="modal-body">
                         <p><strong>วัน/เวลา เดินทางไป:</strong>   {{$cartask->start_at}}</p>

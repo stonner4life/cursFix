@@ -17,4 +17,9 @@ class Devices extends Model
         return $this->belongsToMany(Room::class)->withTimestamps();
     }
 
+    public function roomtasks(){
+
+        return $this->belongsToMany(RoomTask::class)->withTimestamps();
+    }
+
 }

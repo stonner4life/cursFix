@@ -18,14 +18,16 @@ class CreateRoomtasksTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
 
-            $table->string('roomname');
+            $table->string('room_id');
             $table->text('topic');
             $table->text('description');
-            $table->integer('capcity')->unsigned();
-            $table->timestamps('start_at');
+            $table->integer('capacity')->unsigned();
+            $table->timestamp('start_at');
             $table->timestamps('finish_at');
+            $table->integer('hours')->unsigned();
             $table->boolean('status')->default(false);
-            $table->timestamps();
+            $table->integer('role');
+            $table->integer('sub_role');
 
             $table->foreign('user_id') // user id
             ->references('id') // ref id

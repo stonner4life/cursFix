@@ -1,14 +1,17 @@
+@extends('layouts.app')
 
-<div class="panel panel-default">
-    <div class="panel-heading" align="center">เลือกทำรายการ</div>
+@section('content')
+    <div class="container">
+     <div class="panel panel-default">
+      <div class="panel-heading" align="center">เลือกทำรายการ</div>
 
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-4">
-                <a href="#" data-toggle="modal" data-target="#myModal">
+       <div class="panel-body">
+          <div class="row">
+              <div class="col-md-4">
+                 <a href="#" data-toggle="modal" data-target="#myModal">
                     <div  class="panel panel-danger">
                         <div class="panel-heading" align="center">
-                            <span class="glyphicon glyphicon-blackboard"style="font-size: 120px;" ></span>
+                            <span class="glyphicon glyphicon-blackboard" style="font-size: 120px;" ></span>
                         </div>
                         <div class="panel-body" align="center">
                             จองห้องประชุม
@@ -60,7 +63,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="">
+                <a href="" data-toggle="modal" data-target="#carModal">
                     <div  class="panel panel-primary">
                         <div class="panel-heading" align="center">
                             <span class="glyphicon glyphicon-cog" style="font-size: 120px;" ></span>
@@ -84,17 +87,21 @@
                         </div>
                     </div>
                 </a>
+                @include('layouts.addroommodal')
+
             </div>
 
-            @include('layouts.addroommodal')
+            @include('layouts.carmodal')
         </div>
 
 
            @include('layouts.cartaskmodal')
 
 
-
-    </div>
+       </div>
          @include('layouts.roomtaskmodal')
 
-</div>
+      </div>
+    </div>
+
+@endsection

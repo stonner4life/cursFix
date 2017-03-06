@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" action="/roomtasks">
+                <form method="post" action="/roomtasks/create">
 
                     {{ csrf_field() }}
 
@@ -42,14 +42,11 @@
                     <div class="form-group">
                         <label for="room_id">ห้องเรียน/ห้องประชุม :</label>
                         <select class="form-control" name="room_id">
-                            <option>ห้องประชุม 1101 บัณฑิตวิทยาลัยชั้น 11</option>
-                            <option>ห้องประชุม1201 บัณฑิตวิทยาลัยชั้น 12</option>
-                            <option >ห้องประชุม 1301 บัณฑิตวิทยาลัย ชั้น 13</option>
-                            <option >ห้องประชุม 1302 ห้องประชุมภายในผู้บริหารบัณฑิตวิทยาลัยชั้น 13</option>
-                            <option >ห้องประชุมชั้น 1401 บัณฑิตวิทยาลัยชั้น 14</option>
-                            <option >ห้องประชุมชั้น 1402 บัณฑิตวิทยาลัยชั้น 14</option>
-                            <option >ห้องประชุมชั้น 1501 บัณฑิตวิทยาลัยชั้น 15</option>
-                            <option >ห้องประชุมชั้น 1502 บัณฑิตวิทยาลัยชั้น 15</option>
+
+                            @foreach($roomlists as $roomlist)
+                                <option value="{{$roomlist->id}}">{{$roomlist->roomname}}</option>
+                            @endforeach
+
                         </select>
                     </div>
 
@@ -73,6 +70,12 @@
                         <label for="capacity">จำนวนผู้เข้าเรียน/เข้าประชุม :</label>
                         <textarea class="form-control" name="capacity" rows="1" ></textarea>
                     </div>
+
+                    <div class="form-group">
+                        {!! Form::label('devices','อุปกรณ์โสตฯ:') !!}
+                        {!! Form::select('devices[]',$devices,null,['id'=>'good_Lists','clsss'=>'form-control','multiple']) !!}
+                    </div>
+
 
                     @include('layouts.errors')
                     <div class="modal-footer">
