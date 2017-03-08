@@ -34,8 +34,13 @@ class CarTask extends Model
     public function roles(){
         return $this->belongsTo('App\Role','role');
     }
+
     public function subroles(){
         return $this->belongsTo('App\SubRole','sub_role');
+    }
+
+    public function alllists(){
+        return $this->belongsTo('App\Car', 'vehicle');
     }
 
 }

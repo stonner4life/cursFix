@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RoomRequest;
 use Carbon\Carbon;
 use App\RoomTask;
+use App\Room;
 use App\User;
 use App\Devices;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,7 @@ class RoomTaskController extends Controller
         $roomtasks = RoomTask::all();
         $devices = Devices::pluck('name','id');
         $cartasks = CarTask::all();
+        $roomlists = Room::all();
 
         $room =request("room_id");
         $d1 =request('start_at');
@@ -76,19 +78,35 @@ class RoomTaskController extends Controller
             if($db != null)
             {
                 session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่1');
+                  if(Auth::check() && Auth::user()->role==10)
+                    {
+                    return view('layouts/sahauserhome', compact('roomtasks','devices','cartasks','roomlists'));
+                    }
                 return view('/datatables/show', compact('roomtasks','devices','cartasks'));
             }
             else if ($db2 != null){
                 session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม2');
+                if(Auth::check() && Auth::user()->role==10)
+                {
+                    return view('layouts/sahauserhome', compact('roomtasks','devices','cartasks','roomlists'));
+                }
                 return view('/home', compact('roomtasks','devices','cartasks'));
 
             }
             else if ($db3 != null){
                 session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่3');
+                if(Auth::check() && Auth::user()->role==10)
+                {
+                    return view('layouts/sahauserhome', compact('roomtasks','devices','cartasks','roomlists'));
+                }
                 return view('/home', compact('roomtasks','devices','cartasks'));
             }
             else if ($db4 != null){
                 session()->flash('messagedanger','ห้องไม่ว่างในช่วเวลานี้ กรุณาเลือกช่วงเวลาใหม่4');
+                if(Auth::check() && Auth::user()->role==10)
+                {
+                    return view('layouts/sahauserhome', compact('roomtasks','devices','cartasks','roomlists'));
+                }
                 return view('/home', compact('roomtasks','devices','cartasks'));
             }
             else
@@ -108,17 +126,22 @@ class RoomTaskController extends Controller
                     'capacity'=>request('capacity'),
                     'description'=>request('description'),
                     'user_id'=>auth()->id(),
-                    'role'=>Auth::user()->role,
-                    'sub_role'=>Auth::user()->sub_role,
                     'hours'=> $hours,
-
+//                    'role'=>Auth::user()->role,
+//                    'sub_role'=>Auth::user()->sub_role,
                 ]);
 
                 $deviceIds = $request->input('devices');
                 $roomtasks->devices()->attach($deviceIds);
 
                 session()->flash('message','จองห้องสำเร็จ โปรดรอการอณุมัติ'); //FLASH
-                return redirect('datatables/show');
+
+                if(Auth::check() && Auth::user()->role==10)
+                {
+                    return redirect('datatables/showsaha');
+                }
+
+                    return redirect('datatables/show');
 
             }
 

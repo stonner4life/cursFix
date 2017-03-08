@@ -23,32 +23,33 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">อีเมล</label>
+                            <label for="email" class="col-md-4 control-label">อีเมล์</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{$users->email}}" required>
 
-
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password" class="col-md-4 control-label" >รหัสผ่าน</label>
-
+                            <label for="role" class="col-md-4 control-label">กลุ่มภารกิจ</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" value="" required>
+                                <input id="role" type="text" disabled="disabled" class="form-control" value="{{$users->roles->name}}" required autofocus>
 
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">ยืนยัน รหัสผ่าน</label>
-
+                            <label for="sub_role" class="col-md-4 control-label">สหสาขาวิชา</label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="sub_role" type="text" disabled="disabled" class="form-control" value="{{$users->subroles->name}}" required autofocus>
+
                             </div>
                         </div>
+
+
+
 
 
 

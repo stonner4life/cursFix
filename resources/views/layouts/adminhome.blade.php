@@ -35,7 +35,7 @@
 
 
             <div class="col-md-4">
-                <a href="">
+                <a href="#" data-toggle="modal" data-target="#CameraTaskModal">
                     <div  class="panel panel-success">
                         <div class="panel-heading" align="center">
                             <span class="glyphicon glyphicon-camera" style=" font-size: 120px;"></span>
@@ -43,12 +43,15 @@
                         <div class="panel-body" align="center">
                             จองเจ้าหน้าที่ถ่ายรูป
                         </div>
+
                     </div>
                 </a>
+                @include('layouts.camerataskmodal')    {{---------> Fix bottom menu--}}
             </div>
+
         </div>
 
-        <div class="row">
+        {{--<div class="row">--}}
             <div class="col-md-4">
                 <a href="#" data-toggle="modal" data-target="#roomModal">
                     <div  class="panel panel-danger">
@@ -92,7 +95,7 @@
             </div>
 
             @include('layouts.carmodal')
-        </div>
+        {{--</div>--}}
 
 
            @include('layouts.cartaskmodal')
@@ -102,6 +105,8 @@
          @include('layouts.roomtaskmodal')
 
       </div>
+
     </div>
+
 
 @endsection

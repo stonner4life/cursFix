@@ -53,7 +53,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ url('/alllists') }}">
+                            <a href="{{ url('alllists') }}">
                                 <span class="glyphicon glyphicon-blackboard"  ></span>
                                 ห้องประชุมและยานพาหนะในระบบ
                             </a>
@@ -82,7 +82,7 @@
                     </ul>
                 </li>
 
-                @elseif( Auth::user()->role > 1 ) {{-- 2-->NORMAL USER--}}
+                @elseif( Auth::check() && Auth::user()->role >1 && Auth::user()->role <=6) {{-- 2-6 ->NORMAL USER--}}
 
                     <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -135,9 +135,178 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                 </ul>
+                                </ul>
                     </li>
-               </ul>
+
+                @elseif( Auth::user()->role == 10 ) {{-- 10-->SAHA USER--}}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li>
+                            <a href="{{ url('/home') }}">
+                                <span class="glyphicon glyphicon-home"  ></span>
+                                หน้าหลัก
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/users/{{ Auth::user()->id }}/edit">
+                                <span class="glyphicon glyphicon-user"  ></span>
+                                ประวัติส่วนตัวของฉัน
+                            </a>
+                        </li>
+
+
+
+                        <li>
+                            <a href="{{ url('/alllists') }}">
+                                <span class="glyphicon glyphicon-blackboard"  ></span>
+                                ห้องประชุมและยานพาหนะในระบบ
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{{ url('/datatables/showsaha/') }}">
+                                <span class="glyphicon glyphicon-list-alt"  ></span>
+                                ประวัติการจองของฉัน
+                            </a>
+                        </li>
+
+                        <li>
+
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="glyphicon glyphicon-log-out"  ></span>
+                                ออกจากระบบ
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+                @elseif( Auth::user()->role == 7 ) {{-- 7-->Driver USER--}}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li>
+                            <a href="{{ url('/home') }}">
+                                <span class="glyphicon glyphicon-home"  ></span>
+                                หน้าหลัก
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/users/{{ Auth::user()->id }}/edit">
+                                <span class="glyphicon glyphicon-user"  ></span>
+                                ประวัติส่วนตัวของฉัน
+                            </a>
+                        </li>
+
+
+
+                        <li>
+                            <a href="{{ url('/alllists') }}">
+                                <span class="glyphicon glyphicon-blackboard"  ></span>
+                                ห้องประชุมและยานพาหนะในระบบ
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{{ url('/datatables/showdriver/') }}">
+                                <span class="glyphicon glyphicon-list-alt"  ></span>
+                                ประวัติการจองของฉัน
+                            </a>
+                        </li>
+
+                        <li>
+
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="glyphicon glyphicon-log-out"  ></span>
+                                ออกจากระบบ
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                @elseif( Auth::user()->role == 8 ) {{-- 10-->Camera man USER--}}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li>
+                            <a href="{{ url('/home') }}">
+                                <span class="glyphicon glyphicon-home"  ></span>
+                                หน้าหลัก
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/users/{{ Auth::user()->id }}/edit">
+                                <span class="glyphicon glyphicon-user"  ></span>
+                                ประวัติส่วนตัวของฉัน
+                            </a>
+                        </li>
+
+
+
+                        <li>
+                            <a href="{{ url('/alllists') }}">
+                                <span class="glyphicon glyphicon-blackboard"  ></span>
+                                ห้องประชุมและยานพาหนะในระบบ
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{{ url('/datatables/showeq/') }}">
+                                <span class="glyphicon glyphicon-list-alt"  ></span>
+                                ประวัติการจองของฉัน
+                            </a>
+                        </li>
+
+                        <li>
+
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span class="glyphicon glyphicon-log-out"  ></span>
+                                ออกจากระบบ
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+
         @endif
     </div>
 

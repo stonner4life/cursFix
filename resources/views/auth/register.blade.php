@@ -62,21 +62,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="role" class="col-md-4 control-label">บทบาท</label>
+                            <label for="role" class="col-md-4 control-label">กลุ่มภารกิจ</label>
 
                         <div class="col-md-6">
                             <select id="role" type="text" class="form-control" name="role" required>
                                 <option value="1">ผู้ดูแลระบบ</option>
                                 <option value="2">กลุ่มภารกิจบริหารและธุรการ</option>
                                 <option value="3">กลุ่มภารกิจ คลัง พัสดุและงบประมาณ</option>
-                                <option value="4">ฝ่ายวิชาการ</option>
-                                <option value="5">กลุ่มภารกิจคุณภาพการศึกษา</option>
-                                <option value="6">กลุ่มภารกิจสนับสนุนบัณฑิตศึกษา</option>
-                                <option value="7">กลุ่มภารกิจหลักสูตรสหสาขาวิชา</option>
-                                <option value="8">พนักงานขับรถ</option>
-                                <option value="9">พนักงานถ่ายรูป</option>
-                                <option value="10">แม่บ้าน</option>
-                                <option value="11">สหสาขาวิชา</option>
+                                <option value="4">กลุ่มภารกิจคุณภาพการศึกษา</option>
+                                <option value="5">กลุ่มภารกิจสนับสนุนบัณฑิตศึกษา</option>
+                                <option value="6">กลุ่มภารกิจหลักสูตรสหสาขาวิชา</option>
+                                <option value="7">พนักงานขับรถ</option>
+                                <option value="8">พนักงานถ่ายรูป</option>
+                                <option value="9">แม่บ้าน</option>
+                                <option value="10">สหสาขาวิชา</option>
                             </select>
                         </div>
                        </div>
@@ -86,15 +85,28 @@
                         <div class="col-md-6">
                             <select id="sub_role" type="text" class="form-control" name="sub_role" required>
                                 
-                                <option value="0">ไม่มี</option>
-                                <option value="1">เงินทุนสหสาขาวิชาสรีรวิทยา</option>
-                                <option value="2">เงินทุนสหสาขาวิทยาศาสตร์สิ่งแวดล้อม ทรัพยากร</option>
-                                <option value="3">เงินทุนสหสาขาวิชาเภสัชวิทยา</option>
-                                <option value="4">ดเงินทุนสหสาขาวิชาจุลชีววิทยาทางการแพทย์</option>
-                                <option value="5">เงินทุนสหสาขาวิชายุโรปศึกษา</option>
-                                <option value="6">เงินทุนสหสาขาวิชาการจัดการสิ่งแวดล้อม</option>
-                                <option value="7">เงินทุนสหสาขาวิชาจัดการทางวัฒนธรรม</option>
-                                <option value="8">เงินทุนสหสาขาวิชาอังกฤษเป็นภาษานานาชาติ</option>
+                                <option value="1">ไม่มี</option>
+                                <option value="2">เงินทุนสหสาขาวิชาสรีรวิทยา</option>
+                                <option value="3">เงินทุนสหสาขาวิทยาศาสตร์สิ่งแวดล้อม</option>
+                                <option value="4">เงินทุนสหสาขาวิชาเภสัชวิทยา</option>
+                                <option value="5">ดเงินทุนสหสาขาวิชาจุลชีววิทยาทางการแพทย์</option>
+                                <option value="6">เงินทุนสหสาขาวิชายุโรปศึกษา</option>
+                                <option value="7">เงินทุนสหสาขาวิชาการจัดการสิ่งแวดล้อม</option>
+                                <option value="8">เงินทุนสหสาขาวิชาจัดการทางวัฒนธรรม</option>
+                                <option value="9">เงินทุนสหสาขาวิชาอังกฤษเป็นภาษานานาชาติ</option>
+                                <option value="10">สหสาขาวิชาการจัดการด้านโลจิสติกส์</option>
+                                <option value="11">สหสาขาวิชาพัฒนามนุษย์และสังคม</option>
+                                <option value="12">สหสาขาวิชาเอเชียตะวันออกเฉียงใต้</option>
+                                <option value="13">สหสาขาวิชาชีวเวชศาสตร์</option>
+                                <option value="14">สหสาขาวิชาทันตชีววัสดุศาสตร์</option>
+                                <option value="15">สหสาขาวิชาวิทยาศาสตร์นาโนฯ</option>
+                                <option value="16">สหสาขาวิชาาธุรกิจเทคโนโลยีฯ</option>
+                                <option value="17">สหสาขาวิชาเกาหลีศึกษา</option>
+                                <option value="18">สหสาขาวิชาสิ่งแวดล้อม การพัฒนาและความยั่งยืน</option>
+                                <option value="19">สหสาขาวิชาการบริหารกิจการทางทะเล</option>
+                                <option value="20">สหสาขาวิชาเทคโนโลยีและการจัดการพลังงาน</option>
+                                <option value="21">สหสาขาวิชารัสเซียศึกษา</option>
+                                <option value="22">สหสาขาวิชาชีวสารสนเทศศาสตร์ฯ</option>
                             </select>
                         </div>
                 </div>

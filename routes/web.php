@@ -16,6 +16,10 @@ Route::get('/', function () {
 //////////////////////////////////////////////////////////////
 
 Route::get('/users/{id}/edit','UserController@edit');
+Route::get('users/destroy/{id}','UserController@destroy');
+
+Route::get('/users','UserController@getAll')
+    ->name('datatables.userdata');
 
 //////////////////////////////////////////////////////////////
 
@@ -56,10 +60,17 @@ Route::get('datatables.data', 'DatatablesController@anyData')
     ->name('datatables.data');
 
 
-
 Route::get('datatables/togglestatus/{id}', 'DatatablesController@ToggleStatus');
 
 Route::get('datatables/show', 'DatatablesController@getId');
+
+Route::get('datatables/showsaha', 'DatatablesController@getId'); //สหสาขาวิชา
+
+Route::get('datatables/showdriver', 'DatatablesController@getIndex');   //เจ้าหน้าขับรถ
+
+Route::get('datatables/showeq', 'DatatablesController@getIndex');   //เจ้าหน้าที่โสต
+
+
 
 Route::get('datatables.byid', 'DatatablesController@getbyId')
     ->name('datatables.byid');
@@ -69,12 +80,9 @@ Route::get('datatables.byid', 'DatatablesController@getbyId')
 
 ///////////////////////////////////////////////////
 
-Route::get('/cartasks','CarTaskController@index');
+
 Route::get('/cartask', 'CarTaskController@getCarTask')
     ->name('datatables.cardata');
-
-
-
 Route::get('/cartaskid', 'CarTaskController@getbyId')
     ->name('datatables.carIddata');
 
@@ -86,16 +94,20 @@ Route::get('cartasks/destroy/{id}','CarTaskController@destroy');
 
 ////////////////////////////////////////////////////////////////////////////
 Route::get('/alllists','CarListController@index');
-Route::post('/carlists/create','CarListController@store');
+Route::post('/alllists/create','CarListController@store');
+
+
+
+////////////////////////////////////////////////////////////////////////////
+Route::get('/cameratask','CameraTaskController@GetAllTask')
+    ->name('datatables.cameradata');
+
+Route::post('cameratask/create', 'CameraTaskController@store');
+Route::get('cameratask/destroy/{id}','CameraTaskController@destroy');
+Route::get('cameratask/togglestatus/{id}', 'CameraTaskController@ToggleStatus');
 
 
 
 
 
 
-
-
-
-//Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
-//    return "this page requires that you be logged in and an Admin";
-//}]);

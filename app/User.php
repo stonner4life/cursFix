@@ -27,23 +27,29 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
 
     public function rooms(){
         return $this->hasMany('App\RoomTask');
     }
 
     public function roles(){
-        return $this->belongsTo('App\Role','role','id');
+        return $this->belongsTo('App\Role','role');
     }
 
     public function subroles(){
-        return $this->belongsTo('App\SubRole','sub_role','id');
+        return $this->belongsTo('App\SubRole','sub_role');
     }
+
     public function isAdmin()
     {
 //        return $this->admin; // this looks for an admin column in your users table
 
         return Role::find($this->attributes['role'])->name == 'admin';
     }
+
 
 }

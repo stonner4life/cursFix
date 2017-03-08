@@ -20,11 +20,9 @@
 
                     <p><strong>จำนวนผู้เข้าประชุม: </strong>{{$roomtask->capacity}} คน </p>
 
-                    <p><strong>รายละเอียดการประชุม:</strong></p>
-                    <p>{{$roomtask->description}}</p>
                     {{--Show devices of spicific room--}}
                     @if(count($roomtask->devices))
-                        <p><strong>อุปกรณโสตฯ :</strong></p>
+                        <p><strong>อุปกรณโสตฯ:</strong></p>
                         <ul>
                             @foreach($roomtask->devices as $device)
                                 <li>{{$device->name}}</li>

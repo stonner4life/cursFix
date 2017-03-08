@@ -110,7 +110,7 @@
     $('div.alert').not('.alert.important').delay(3000).slideUp(300);
     </script>
 
-
+ {{--DATETIME PICKER--}}
 <script type="text/javascript">
     $(function () {
 
@@ -127,6 +127,7 @@
             $('#start_at').data("DateTimePicker").maxDate(e.date);
         });
 
+                //For CarTask//
 
         $('#carstart_at').datetimepicker({
             format: 'YYYY-MM-DD HH:mm',
@@ -140,7 +141,23 @@
         $("#finish_att").on("dp.change", function (e) {
             $('#carstart_at').data("DateTimePicker").maxDate(e.date);
         });
+
+        //For CameraTask//
+
+        $('#camstart_at').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm',
+        });
+        $('#camfinish_at').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm',
+        });
+        $("#camstart_at").on("dp.change", function (e) {
+            $('#camfinish_at').data("DateTimePicker").minDate(e.date);
+        });
+        $("#camfinish_at").on("dp.change", function (e) {
+            $('#camstart_at').data("DateTimePicker").maxDate(e.date);
+        });
     });
+
 </script>
 
  {{--Show GIF while load--}}
@@ -152,6 +169,8 @@
         });
     });
 </script>
+
 </body>
 @include('layouts.footer')
+
 </html>

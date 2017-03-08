@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CameraTask;
 use App\Car;
 use App\RoomTask;
 use Illuminate\Http\Request;
@@ -32,12 +33,31 @@ class HomeController extends Controller
         $roomtasks = RoomTask::all();
         $roomlists = Room::all();
         $carlists = Car::all();
-        if( Auth::check() && Auth::user()->role==1 ) {
+
+
+        if( Auth::check() && Auth::user()->role== 1 ) {
             return view('layouts.adminhome', compact('roomlists', 'devices','carlists','roomtasks'));
         }
-        else
+        else if (Auth::check() && Auth::user()->role >1 && Auth::user()->role <=6)
         {
             return view('layouts.userhome', compact('roomlists', 'devices','carlists','roomtasks'));
         }
+        else if (Auth::check() && Auth::user()->role==7)
+        {
+            return view('layouts.driverhome', compact('roomlists', 'devices','carlists','roomtasks'));
+        }
+        else if(Auth::check() && Auth::user()->role==8)
+        {
+            return view('layouts.equserhome', compact('roomlists', 'devices','carlists','roomtasks'));
+        }
+        else if (Auth::check() && Auth::user()->role==9)
+        {
+            return view('datatables.showkeeper', compact('roomlists', 'devices','carlists','roomtasks'));
+        }
+        else if(Auth::check() && Auth::user()->role==10)
+        {
+            return view('layouts.sahauserhome', compact('roomlists', 'devices','carlists','roomtasks'));
+        }
+
     }
 }

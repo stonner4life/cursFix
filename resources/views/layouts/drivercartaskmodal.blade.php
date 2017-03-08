@@ -1,14 +1,13 @@
 {{--CarTask--}}
 @foreach ($cartasks as $cartask )
 
-    <div class="modal fade" id="carModal{{$cartask->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+    <div class="modal fade" id="driverModal{{$cartask->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="carTaskModalLabel">
                         {{$cartask->carlist->brand}} {{$cartask->carlist->model}} {{$cartask->carlist->type}}
-
                     </h4>
                 </div>
 
@@ -23,7 +22,7 @@
                     <p><strong>กลุ่มภารกิจ: </strong>{{$cartask->user->roles->name}} </p>
                     <p><strong>สหสาขาวิชา: </strong>{{$cartask->user->subroles->name}}</p>
 
-                    <p><strong>ทะเบียนรถ:</strong>  {{$cartask->carlist->license}}</p>
+
                     <p><strong>พนักงานขับรถ:</strong> {{$cartask->driver}}
                     <p><strong>เพื่อ:</strong> {{$cartask->purpose}}</p>
                     <p><strong>รายละเอียด:</strong></p>

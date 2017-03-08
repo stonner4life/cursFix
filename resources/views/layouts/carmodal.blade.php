@@ -15,7 +15,7 @@
                     }
                 </style>
 
-                <form method="post" action="/carlists/create">
+                <form method="post" action="/alllists/create">
 
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -62,6 +62,7 @@
                     @include('layouts.errors')
                 </form>
             </div>
+        </div>
         </div>
     </div>
 </div>

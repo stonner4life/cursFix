@@ -26,8 +26,7 @@ class CreateRoomtasksTable extends Migration
             $table->timestamps('finish_at');
             $table->integer('hours')->unsigned();
             $table->boolean('status')->default(false);
-            $table->integer('role');
-            $table->integer('sub_role');
+
 
             $table->foreign('user_id') // user id
             ->references('id') // ref id

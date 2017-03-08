@@ -42,11 +42,21 @@
                     <div class="form-group">
                         <label for="room_id">ห้องเรียน/ห้องประชุม :</label>
                         <select class="form-control" name="room_id">
+                            @if(Auth::check() && Auth::user()->role == 1)
+                                @foreach($roomlists as $roomlist)
+                                    <option value="{{$roomlist->id}}">{{$roomlist->roomname}}</option>
+                                @endforeach
+                            @elseif((Auth::check() && Auth::user()->role >1 && Auth::user()->role <=6))
+                                @foreach($roomlists as $roomlist)
+                                    <option value="{{$roomlist->id}}">{{$roomlist->roomname}}</option>
+                                @endforeach
+                            @elseif(Auth::check() && Auth::user()->role==10)
+                                <option value="5">ห้องประชุมชั้น 1401 บัณฑิตวิทยาลัยชั้น 14</option>
+                                <option value="6">ห้องประชุมชั้น 1402 บัณฑิตวิทยาลัยชั้น 14</option>
+                                <option value="7">ห้องประชุมชั้น 1501 บัณฑิตวิทยาลัยชั้น 15</option>
+                                <option value="8">ห้องประชุมชั้น 1502 บัณฑิตวิทยาลัยชั้น 15</option>
 
-                            @foreach($roomlists as $roomlist)
-                                <option value="{{$roomlist->id}}">{{$roomlist->roomname}}</option>
-                            @endforeach
-
+                            @endif
                         </select>
                     </div>
 
@@ -88,7 +98,7 @@
                     </div>
                 </form>
 
-
+            </div>
 
             </div>
 
