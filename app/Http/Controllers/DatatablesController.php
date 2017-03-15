@@ -22,7 +22,7 @@ class DatatablesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['getbyId', 'show']]);
+        $this->middleware('auth', ['only' => ['getbyId', 'show','getIndex']]);
         $this->middleware('admin', ['only' => [
             'ToggleStatus'
         ]]);

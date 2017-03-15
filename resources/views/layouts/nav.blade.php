@@ -230,7 +230,7 @@
                         <li>
                             <a href="{{ url('/datatables/showdriver/') }}">
                                 <span class="glyphicon glyphicon-list-alt"  ></span>
-                                ประวัติการจองของฉัน
+                                รายละเอียดการจองยานพาหนะในระบบ
                             </a>
                         </li>
 

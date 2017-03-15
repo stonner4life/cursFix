@@ -106,6 +106,17 @@ Route::post('cameratask/create', 'CameraTaskController@store');
 Route::get('cameratask/destroy/{id}','CameraTaskController@destroy');
 Route::get('cameratask/togglestatus/{id}', 'CameraTaskController@ToggleStatus');
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+Route::get('calendar', function () {
+        return view('/calendar');
+    });
+Route::get('/calendadata', 'CalendarController@getRoomArraySQL')
+    ->name('calendar.data');
+
+
+
 
 
 

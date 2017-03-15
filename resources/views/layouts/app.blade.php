@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/bootstrap-glyphicons.css" >
     <link rel="stylesheet" href="/css/select2.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.css">
 
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/kanit.css" rel="stylesheet">
@@ -82,6 +84,8 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/moment-2.10.3.js"></script>
 <script src="/js/bootstrap-datetimepicker.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"></script>
+
 <!-- DataTables -->
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/select2.min.js"></script>
@@ -159,6 +163,7 @@
     });
 
 </script>
+
 
  {{--Show GIF while load--}}
 <script type="text/javascript">

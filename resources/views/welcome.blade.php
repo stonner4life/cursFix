@@ -84,17 +84,19 @@
         <div class="title m-b-md">
             Graduate School, Chulalongkorn University
         </div>
+
           @if( Auth::check() && Auth::user()->role==1 )
 
             <div class="links">
-                <a href="/roomlist">รายละเอียดห้องเรียนและห้องชุม</a>
-                <a href="/roomlist/create">สร้างห้องเรียนและห้องประชุม</a>
-                <a href="/roomtasks">รายละเอียดการจองห้องเรียนและห้องประชุม</a>
-                <a href="/roomtasks/create">จองห้องเรียนและห้องประชุม</a>
+
+                {{--<a href="/roomlist">รายละเอียดห้องเรียนและห้องชุม</a>--}}
+                {{--<a href="/roomlist/create">สร้างห้องเรียนและห้องประชุม</a>--}}
+                {{--<a href="/roomtasks">รายละเอียดการจองห้องเรียนและห้องประชุม</a>--}}
+                {{--<a href="/roomtasks/create">จองห้องเรียนและห้องประชุม</a>--}}
 
                 @else
-                    <div class="links">
-                        <a href="/alllists">รายละเอียด ห้องประชุมและยานพาหนะ</a>
+                    {{--<div class="links">--}}
+                        {{--<a href="/alllists">รายละเอียด ห้องประชุมและยานพาหนะ</a>--}}
                 @endif
 
 
