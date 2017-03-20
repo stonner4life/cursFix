@@ -60,6 +60,13 @@
                         </li>
 
                         <li>
+                            <a href="{{ url('/datatables/show') }}">
+                                <span class="glyphicon glyphicon-list-alt"  ></span>
+                                ประวัติการจองของฉัน
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="{{ url('/datatables') }}">
                                 <span class="glyphicon glyphicon-list-alt"  ></span>
                                 ประวัติการจองทั้งหมด

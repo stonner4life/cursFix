@@ -9,9 +9,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('/welcome');
-});
+//Route::get('/', function () {
+//    return view('/welcome');
+//});
+Route::get('/','CarListController@index2');
 
 //////////////////////////////////////////////////////////////
 
@@ -112,8 +113,14 @@ Route::get('cameratask/togglestatus/{id}', 'CameraTaskController@ToggleStatus');
 Route::get('calendar', function () {
         return view('/calendar');
     });
-Route::get('/calendadata', 'CalendarController@getRoomArraySQL')
-    ->name('calendar.data');
+Route::get('/calendarroomdata', 'CalendarController@getRoomArraySQL');
+
+Route::get('/calendarcardata', 'CalendarController@getCarArraySQL');
+
+Route::get('/calendarcameradata', 'CalendarController@getCameraArraySQL');
+
+
+
 
 
 

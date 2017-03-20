@@ -15,9 +15,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     {{--Kanit Font--}}
-    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="/css/kanit.css" rel="stylesheet">
 
     <!-- Styles -->
+
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -29,7 +31,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.css">
 
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/kanit.css" rel="stylesheet">
+
 
     <script>
         window.Laravel = {!! json_encode([

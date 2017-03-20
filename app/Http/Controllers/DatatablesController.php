@@ -141,7 +141,7 @@ class DatatablesController extends Controller
         else if(Auth::check() && Auth::user()->role==1) //admin
         {
             $roomtasks = $roomtasks->get();
-            return view('datatables',compact('roomtasks','cartasks','roles','subroles','cameratasks'));
+            return view('datatables.show',compact('roomtasks','cartasks','roles','subroles','cameratasks'));
         }
         else if(Auth::check() && Auth::user()->role >1 && Auth::user()->role <=6) //กลุ่มภารกิจ 2-6
         {

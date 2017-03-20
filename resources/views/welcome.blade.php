@@ -192,11 +192,9 @@
                             <img src="/images/{{$roomlist->image}}" class="img-responsive" style="width: 100%; height: 280px;" >
                         </a>
                         <div class="portfolio-caption">
-                                        @include('layouts.viewroommodal')
-
                             <div class="portfolio-caption">
-                            <h4> {{$roomlist->roonname}}  </h4>
-                            <p class="text-muted">{{$roomlist->description}}
+                              <h4> {{$roomlist->roonname}}  </h4>
+                              <p class="text-muted">{{$roomlist->description}}
                             </div>
                         </div>
 
@@ -458,7 +456,7 @@
 
                                     @endif
 
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> จองห้อง</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-info"></i> จองห้อง</button>
                                 </div>
                             </div>
                         </div>

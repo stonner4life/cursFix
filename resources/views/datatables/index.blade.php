@@ -356,8 +356,6 @@
 
 
 
-
-
 {{--Slide up the flash--}}
 <script>
     $('div.alert').not('.alert.important').delay(2000).slideUp(300);
