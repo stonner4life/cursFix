@@ -161,7 +161,7 @@
                         <i class="fa fa-camera-retro  fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">จองเจ้าหน้าที่ถ่ายภาพ</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">บุคลากรใน บัณฑิตวิทยาลัย จุฬาลงกรณ์มหาวิทยาลัยสามรถจอเจ้าหน้าที่ถ่านภาพ</p>
             </div>
         </div>
         </div>
@@ -189,11 +189,9 @@
                                     <i class="fa fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="/images/{{$roomlist->image}}" class="img-responsive" style="width: 100%; height: 320px;" >
+                            <img src="/images/{{$roomlist->image}}" class="img-responsive" style="width: 100%; height: 280px;" >
                         </a>
                         <div class="portfolio-caption">
-
-
                                         @include('layouts.viewroommodal')
 
                             <div class="portfolio-caption">
